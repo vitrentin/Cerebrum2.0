@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Cerebrum</string>
+    <string name="todas">Todas</string>
+    <string name="geografia">Geografia</string>
+    <string name="qu_mica">Química</string>
+    <string name="matematica">Matemática</string>
+    <string name="portugues">Português</string>
+    <string name="quimica">Química</string>
+    <string name="questao1">Qual a cor do cavalo branco de Napoleão??</string>
+    <string name="branco">Branco</string>
+    <string name="preto">Preto</string>
+    <string name="marrom">Marrom</string>
+    <string name="cinza">Cinza</string>
+    <string name="questaom">Encontre o X da equação: x = 2² + 3</string>
+    <string name="ma">10</string>
+    <string name="mb">7</string>
+    <string name="mc">6</string>
+    <string name="md">25</string>
+    <string name="questaoq">O que é NaCl?</string>
+    <string name="qa">Pedra</string>
+    <string name="qb">Água</string>
+    <string name="qc">Sal</string>
+    <string name="qd">Refrigerante</string>
+    <string name="questaog">Qual é a capital do Brasil?</string>
+    <string name="ga">DF</string>
+    <string name="gb">MG</string>
+    <string name="gc">SP</string>
+    <string name="gd">BA</string>
+    <string name="acertos">Parabens você acertou 10/10</string>
+    <string name="menu">Menu</string>
+    <string name="sair2">Sair</string>
+    <string name="jogar">Jogar</string>
+    <string name="sair">Sair</string>
+    <string name="cerebrum">Cerebrum</string>
+    <string name="escolha">Em qual matéria você deseja testar seus conhecimentos?</string>
+    <string name="imagem">Logo</string>
+</resources>
