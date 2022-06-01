@@ -13,10 +13,44 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_weight="0.1"
+        android:gravity="start"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/voltar4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="100dp"
+            android:contentDescription="@string/imagem"
+            app:srcCompat="@drawable/arrowback48px" />
+
+        <TextView
+            android:id="@+id/questoesq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:text="@string/questoes"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tempoq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tempo"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="50dp"
-        android:layout_weight="0.2"
+        android:layout_weight="0.1"
         android:foregroundGravity="center"
         android:gravity="center"
         android:orientation="horizontal">
@@ -24,7 +58,7 @@
         <ImageView
             android:id="@+id/imageView5"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:layout_gravity="center"
             android:contentDescription="@string/imagem"
             android:foregroundGravity="center"
@@ -34,16 +68,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         android:layout_weight="0.2"
         android:gravity="center"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/questaog"
-            android:layout_width="match_parent"
+            android:id="@+id/questaoq"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
             android:gravity="center"
             android:text="@string/questaoq"
             android:textColor="#FFFFFF"
@@ -67,15 +101,13 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/ga"
+                android:id="@+id/qa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/corner"
                 android:backgroundTint="#9A4DA7"
                 android:text="@string/qa"
-                android:textAllCaps="false"
-                android:textColor="#FFFFFF"
-                app:cornerRadius="30dp" />
+                android:textColor="#FFFFFF" />
         </LinearLayout>
 
         <LinearLayout
@@ -86,16 +118,13 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/gb"
+                android:id="@+id/qb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/corner"
                 android:backgroundTint="#9A4DA7"
                 android:text="@string/qb"
-                android:textAllCaps="false"
-                android:textColor="#FFFFFF"
-                app:cornerRadius="30dp" />
-
+                android:textColor="#FFFFFF" />
         </LinearLayout>
 
         <LinearLayout
@@ -106,15 +135,13 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/gc"
+                android:id="@+id/qc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/corner"
                 android:backgroundTint="#9A4DA7"
                 android:text="@string/qc"
-                android:textAllCaps="false"
-                android:textColor="#FFFFFF"
-                app:cornerRadius="30dp" />
+                android:textColor="#FFFFFF" />
         </LinearLayout>
 
         <LinearLayout
@@ -125,16 +152,28 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/gd"
+                android:id="@+id/qd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/corner"
                 android:backgroundTint="#9A4DA7"
-                android:gravity="center"
                 android:text="@string/qd"
-                android:textAllCaps="false"
-                android:textColor="#FFFFFF"
-                app:cornerRadius="30dp" />
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/proximo4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/corner"
+                android:backgroundTint="#379A4DA7"
+                android:text="@string/proximo" />
         </LinearLayout>
 
     </LinearLayout>

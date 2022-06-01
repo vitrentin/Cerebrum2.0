@@ -2,7 +2,6 @@
     <string name="app_name">Cerebrum</string>
     <string name="todas">Todas</string>
     <string name="geografia">Geografia</string>
-    <string name="qu_mica">Química</string>
     <string name="matematica">Matemática</string>
     <string name="portugues">Português</string>
     <string name="quimica">Química</string>
@@ -11,7 +10,7 @@
     <string name="preto">Preto</string>
     <string name="marrom">Marrom</string>
     <string name="cinza">Cinza</string>
-    <string name="questaom">Encontre o X da equação: x = 2² + 3</string>
+    <string name="questaom">Encontre o X da equação:\n x = 2² + 3</string>
     <string name="ma">10</string>
     <string name="mb">7</string>
     <string name="mc">6</string>
@@ -26,7 +25,7 @@
     <string name="gb">MG</string>
     <string name="gc">SP</string>
     <string name="gd">BA</string>
-    <string name="acertos">Parabens você acertou 10/10</string>
+    <string name="acertos">Parabéns você\n acertou 10/10</string>
     <string name="menu">Menu</string>
     <string name="sair2">Sair</string>
     <string name="jogar">Jogar</string>
@@ -34,4 +33,11 @@
     <string name="cerebrum">Cerebrum</string>
     <string name="escolha">Em qual matéria você deseja testar seus conhecimentos?</string>
     <string name="imagem">Logo</string>
+    <string name="proximo">Próximo</string>
+    <string name="tempo">00:59</string>
+    <string name="questoes">1/5</string>
+    <string name="respostascorretas">0</string>
+    <string name="respostasincorretas">0</string>
+    <string name="frasecorretas">Respostas corretas:</string>
+    <string name="fraseincorretas">Respostas incorretas:</string>
 </resources>

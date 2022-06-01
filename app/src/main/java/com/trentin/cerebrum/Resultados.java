@@ -1,23 +1,23 @@
 package com.trentin.cerebrum;
 
-import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class Tela6 extends AppCompatActivity implements View.OnClickListener{
+public class Resultados extends AppCompatActivity implements View.OnClickListener{
     private Button menu, exit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tela6);
+        setContentView(R.layout.activity_resultados);
         menu = (Button) findViewById(R.id.menu);
         menu.setOnClickListener(this);
         exit = (Button) findViewById(R.id.sair2);
         exit.setOnClickListener(this);
-
         final TextView respostasCorretas = findViewById(R.id.respostascorretas);
         final TextView respostasIncorretas = findViewById(R.id.respostasincorretas);
 
@@ -26,7 +26,9 @@ public class Tela6 extends AppCompatActivity implements View.OnClickListener{
 
         respostasCorretas.setText(String.valueOf(getRespostasCorretas));
         respostasIncorretas.setText(String.valueOf(getRespostasIncorretas));
+
     }
+
 
     @Override
     public void onClick(View view) {
@@ -40,5 +42,4 @@ public class Tela6 extends AppCompatActivity implements View.OnClickListener{
             finishAffinity();
         }
     }
-
 }
