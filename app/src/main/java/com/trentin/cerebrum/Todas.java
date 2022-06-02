@@ -1,8 +1,8 @@
 package com.trentin.cerebrum;
 
-import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,52 +16,56 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Tela5 extends AppCompatActivity implements View.OnClickListener{
-    private Button ga, gb, gc, gd,proximoBtn;
+public class Todas extends AppCompatActivity implements View.OnClickListener{
+    private Button ta,tb,tc,td, proximoBtn;
     private TextView questao, questoes;
     private Timer tempo;
-    private int tempoTotalMin = 1, segundos = 0;
+    private int tempoTotalMin = 2, segundos = 0;
     private List<ListaDeQuestoes> listaDeQuestoes;
     private int indiceDeQuestaoAtual = 0;
     private String opcaoSelecionada = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tela5);
+        setContentView(R.layout.activity_todas);
 
-        questoes = findViewById(R.id.questoesg);
-        questao = findViewById(R.id.questaog);
+        questoes = findViewById(R.id.questoestodas);
+        questao = findViewById(R.id.questaotodas);
 
-        final ImageView voltar = findViewById(R.id.voltar5);
+        final ImageView voltar = findViewById(R.id.voltar6);
 
-        ga = (Button) findViewById(R.id.ga);
-        //ga.setOnClickListener(this);
-        gb = (Button) findViewById(R.id.gb);
-        //gb.setOnClickListener(this);
-        gc = (Button) findViewById(R.id.gc);
-        //gc.setOnClickListener(this);
-        gd = (Button) findViewById(R.id.gd);
-        //gd.setOnClickListener(this);
-        proximoBtn = (Button) findViewById(R.id.proximo5);
-        listaDeQuestoes = BancoDeQuestoes.getQuestoes("geografia");
-        final TextView timer = findViewById(R.id.tempog);
+        ta = (Button) findViewById(R.id.qta);
+
+        tb = (Button) findViewById(R.id.qtb);
+
+        tc = (Button) findViewById(R.id.qtc);
+
+        td = (Button) findViewById(R.id.qtd);
+
+        TextView selecionarMaterias = findViewById(R.id.materia);
+        String getSelecionarMaterias = getIntent().getStringExtra("selecionarMateria");
+        //selecionarMateria.setText(getSelecionarMateria);
+
+        proximoBtn = (Button) findViewById(R.id.proximo6);
+        listaDeQuestoes = BancoDeQuestoes.getQuestoes("todas");
+        final TextView timer = findViewById(R.id.tempotodas);
         startTimer(timer);
 
         questoes.setText((indiceDeQuestaoAtual+1)+"/"+listaDeQuestoes.size());
         questao.setText(listaDeQuestoes.get(0).getQuestao());
-        ga.setText(listaDeQuestoes.get(0).getOp1());
-        gb.setText(listaDeQuestoes.get(0).getOp2());
-        gc.setText(listaDeQuestoes.get(0).getOp3());
-        gd.setText(listaDeQuestoes.get(0).getOp4());
+        ta.setText(listaDeQuestoes.get(0).getOp1());
+        tb.setText(listaDeQuestoes.get(0).getOp2());
+        tc.setText(listaDeQuestoes.get(0).getOp3());
+        td.setText(listaDeQuestoes.get(0).getOp4());
 
-        ga.setOnClickListener(new View.OnClickListener() {
+        ta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(opcaoSelecionada.isEmpty()){
-                    opcaoSelecionada = ga.getText().toString();
-                    ga.setBackgroundResource(R.drawable.botao_vermelho);
-                    ga.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#CF2F2F")));
-                    ga.setTextColor(Color.WHITE);
+                    opcaoSelecionada = ta.getText().toString();
+                    ta.setBackgroundResource(R.drawable.botao_vermelho);
+                    ta.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#CF2F2F")));
+                    ta.setTextColor(Color.WHITE);
 
                     revelarResposta();
 
@@ -69,14 +73,15 @@ public class Tela5 extends AppCompatActivity implements View.OnClickListener{
                 }
             }
         });
-        gb.setOnClickListener(new View.OnClickListener() {
+        tb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(opcaoSelecionada.isEmpty()){
-                    opcaoSelecionada = gb.getText().toString();
-                    gb.setBackgroundResource(R.drawable.botao_vermelho);
-                    gb.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#CF2F2F")));
-                    gb.setTextColor(Color.WHITE);
+                    opcaoSelecionada = tb.getText().toString();
+                    tb.setBackgroundResource(R.drawable.botao_vermelho);
+                    tb.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#CF2F2F")));
+                    //tb.setBackgroundResource(R.color.red);
+                    tb.setTextColor(Color.WHITE);
 
                     revelarResposta();
 
@@ -84,14 +89,14 @@ public class Tela5 extends AppCompatActivity implements View.OnClickListener{
                 }
             }
         });
-        gc.setOnClickListener(new View.OnClickListener() {
+        tc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(opcaoSelecionada.isEmpty()){
-                    opcaoSelecionada = gc.getText().toString();
-                    gc.setBackgroundResource(R.drawable.botao_vermelho);
-                    gc.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#CF2F2F")));
-                    gc.setTextColor(Color.WHITE);
+                    opcaoSelecionada = tc.getText().toString();
+                    tc.setBackgroundResource(R.drawable.botao_vermelho);
+                    tc.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#CF2F2F")));
+                    tc.setTextColor(Color.WHITE);
 
                     revelarResposta();
 
@@ -99,14 +104,14 @@ public class Tela5 extends AppCompatActivity implements View.OnClickListener{
                 }
             }
         });
-        gd.setOnClickListener(new View.OnClickListener() {
+        td.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(opcaoSelecionada.isEmpty()){
-                    opcaoSelecionada = gd.getText().toString();
-                    gd.setBackgroundResource(R.drawable.botao_vermelho);
-                    gd.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#CF2F2F")));
-                    gd.setTextColor(Color.WHITE);
+                    opcaoSelecionada = td.getText().toString();
+                    td.setBackgroundResource(R.drawable.botao_vermelho);
+                    td.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#CF2F2F")));
+                    td.setTextColor(Color.WHITE);
 
                     revelarResposta();
 
@@ -118,7 +123,7 @@ public class Tela5 extends AppCompatActivity implements View.OnClickListener{
             @Override
             public void onClick(View view) {
                 if(opcaoSelecionada.isEmpty()){
-                    Toast.makeText(Tela5.this, "Por favor, selecione uma opção", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Todas.this, "Por favor, selecione uma opção", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     mudarProximaQuestao();
@@ -131,7 +136,7 @@ public class Tela5 extends AppCompatActivity implements View.OnClickListener{
                 tempo.purge();
                 tempo.cancel();
 
-                startActivity(new Intent(Tela5.this, Tela1.class));
+                startActivity(new Intent(Todas.this, Tela1.class));
                 finish();
             }
         });
@@ -143,24 +148,24 @@ public class Tela5 extends AppCompatActivity implements View.OnClickListener{
         }
         if(indiceDeQuestaoAtual < listaDeQuestoes.size()){
             opcaoSelecionada = "";
-            ga.setBackgroundResource(R.drawable.voltar2);
-            ga.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#9A4DA7")));
-            gb.setBackgroundResource(R.drawable.voltar2);
-            gb.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#9A4DA7")));
-            gc.setBackgroundResource(R.drawable.voltar2);
-            gc.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#9A4DA7")));
-            gd.setBackgroundResource(R.drawable.voltar2);
-            gd.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#9A4DA7")));
+            ta.setBackgroundResource(R.drawable.voltar2);
+            ta.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#9A4DA7")));
+            tb.setBackgroundResource(R.drawable.voltar2);
+            tb.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#9A4DA7")));
+            tc.setBackgroundResource(R.drawable.voltar2);
+            tc.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#9A4DA7")));
+            td.setBackgroundResource(R.drawable.voltar2);
+            td.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#9A4DA7")));
 
             questoes.setText((indiceDeQuestaoAtual+1)+"/"+listaDeQuestoes.size());
             questao.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getQuestao());
-            ga.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getOp1());
-            gb.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getOp2());
-            gc.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getOp3());
-            gd.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getOp4());
+            ta.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getOp1());
+            tb.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getOp2());
+            tc.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getOp3());
+            td.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getOp4());
         }
         else{
-            Intent intent = new Intent(Tela5.this, Tela6.class);
+            Intent intent = new Intent(Todas.this, Tela6.class);
             intent.putExtra("correta",getRespostasCorretas());
             intent.putExtra("incorreta",getRespostasIncorretas());
             startActivity(intent);
@@ -180,8 +185,8 @@ public class Tela5 extends AppCompatActivity implements View.OnClickListener{
                 else if(segundos == 1 && tempoTotalMin == 0){
                     tempo.purge();
                     tempo.cancel();
-                    Toast.makeText(Tela5.this, "Tempo esgotado", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Tela5.this, Tela6.class);
+                    Toast.makeText(Todas.this, "Tempo esgotado", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Todas.this, Tela6.class);
                     intent.putExtra("coreta",getRespostasCorretas());
                     intent.putExtra("incorreta", getRespostasIncorretas());
                     startActivity(intent);
@@ -238,58 +243,34 @@ public class Tela5 extends AppCompatActivity implements View.OnClickListener{
         tempo.purge();
         tempo.cancel();
 
-        startActivity(new Intent(Tela5.this, Tela1.class));
+        startActivity(new Intent(Todas.this, Tela1.class));
         finish();
     }
     private void revelarResposta(){
         final String getResposta = listaDeQuestoes.get(indiceDeQuestaoAtual).getOpcerta();
 
-        if(ga.getText().toString().equals(getResposta)){
-            ga.setBackgroundResource(R.drawable.botao_verde);
-            ga.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#55BD44")));
-            ga.setTextColor(Color.WHITE);
+        if(ta.getText().toString().equals(getResposta)){
+            ta.setBackgroundResource(R.drawable.botao_verde);
+            ta.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#55BD44")));
+            ta.setTextColor(Color.WHITE);
         }
-        else if(gb.getText().toString().equals(getResposta)){
-            gb.setBackgroundResource(R.drawable.botao_verde);
-            gb.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#55BD44")));
-            gb.setTextColor(Color.WHITE);
+        else if(tb.getText().toString().equals(getResposta)){
+            tb.setBackgroundResource(R.drawable.botao_verde);
+            tb.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#55BD44")));
+            tb.setTextColor(Color.WHITE);
         }
-        else if(gc.getText().toString().equals(getResposta)){
-            gc.setBackgroundResource(R.drawable.botao_verde);
-            gc.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#55BD44")));
-            gc.setTextColor(Color.WHITE);
+        else if(tc.getText().toString().equals(getResposta)){
+            tc.setBackgroundResource(R.drawable.botao_verde);
+            tc.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#55BD44")));
+            tc.setTextColor(Color.WHITE);
         }
-        else if(gd.getText().toString().equals(getResposta)){
-            gd.setBackgroundResource(R.drawable.botao_verde);
-            gd.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#55BD44")));
-            gd.setTextColor(Color.WHITE);
+        else if(td.getText().toString().equals(getResposta)){
+            td.setBackgroundResource(R.drawable.botao_verde);
+            td.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#55BD44")));
+            td.setTextColor(Color.WHITE);
         }
     }
     @Override
     public void onClick(View view) {
-       /* if (view == ga) {
-            Intent i = new Intent(this, Tela5.class);
-            Bundle b = new Bundle();
-            i.putExtras(b);
-            startActivity(i);
-        }
-        if (view == gb) {
-            Intent i = new Intent(this, Tela5.class);
-            Bundle b = new Bundle();
-            i.putExtras(b);
-            startActivity(i);
-        }
-        if (view == gc) {
-            Intent i = new Intent(this, Tela5.class);
-            Bundle b = new Bundle();
-            i.putExtras(b);
-            startActivity(i);
-        }
-        if (view == gd) {
-            Intent i = new Intent(this, Tela5.class);
-            Bundle b = new Bundle();
-            i.putExtras(b);
-            startActivity(i);
-        }*/
     }
 }

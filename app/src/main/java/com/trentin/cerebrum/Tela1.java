@@ -51,7 +51,7 @@ public class Tela1 extends AppCompatActivity implements View.OnClickListener{
             startActivity(i);
         }
         if (view == todos) {
-            Intent i = new Intent(this, Tela6.class);
+            Intent i = new Intent(this, Todas.class);
             Bundle b = new Bundle();
             i.putExtras(b);
             startActivity(i);

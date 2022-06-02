@@ -3,6 +3,7 @@ package com.trentin.cerebrum;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -59,6 +60,7 @@ public class Tela4 extends AppCompatActivity implements View.OnClickListener{
                 if(opcaoSelecionada.isEmpty()){
                     opcaoSelecionada = qa.getText().toString();
                     qa.setBackgroundResource(R.drawable.botao_vermelho);
+                    qa.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#CF2F2F")));
                     qa.setTextColor(Color.WHITE);
 
                     revelarResposta();
@@ -73,6 +75,7 @@ public class Tela4 extends AppCompatActivity implements View.OnClickListener{
                 if(opcaoSelecionada.isEmpty()){
                     opcaoSelecionada = qb.getText().toString();
                     qb.setBackgroundResource(R.drawable.botao_vermelho);
+                    qb.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#CF2F2F")));
                     qb.setTextColor(Color.WHITE);
 
                     revelarResposta();
@@ -87,6 +90,7 @@ public class Tela4 extends AppCompatActivity implements View.OnClickListener{
                 if(opcaoSelecionada.isEmpty()){
                     opcaoSelecionada = qc.getText().toString();
                     qc.setBackgroundResource(R.drawable.botao_vermelho);
+                    qc.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#CF2F2F")));
                     qc.setTextColor(Color.WHITE);
 
                     revelarResposta();
@@ -101,6 +105,7 @@ public class Tela4 extends AppCompatActivity implements View.OnClickListener{
                 if(opcaoSelecionada.isEmpty()){
                     opcaoSelecionada = qd.getText().toString();
                     qd.setBackgroundResource(R.drawable.botao_vermelho);
+                    qd.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#CF2F2F")));
                     qd.setTextColor(Color.WHITE);
 
                     revelarResposta();
@@ -139,16 +144,13 @@ public class Tela4 extends AppCompatActivity implements View.OnClickListener{
         if(indiceDeQuestaoAtual < listaDeQuestoes.size()){
             opcaoSelecionada = "";
             qa.setBackgroundResource(R.drawable.voltar2);
-
-
+            qa.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#9A4DA7")));
             qb.setBackgroundResource(R.drawable.voltar2);
-
-
+            qb.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#9A4DA7")));
             qc.setBackgroundResource(R.drawable.voltar2);
-
-
+            qc.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#9A4DA7")));
             qd.setBackgroundResource(R.drawable.voltar2);
-
+            qd.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#9A4DA7")));
 
             questoes.setText((indiceDeQuestaoAtual+1)+"/"+listaDeQuestoes.size());
             questao.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getQuestao());
@@ -244,18 +246,22 @@ public class Tela4 extends AppCompatActivity implements View.OnClickListener{
 
         if(qa.getText().toString().equals(getResposta)){
             qa.setBackgroundResource(R.drawable.botao_verde);
+            qa.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#55BD44")));
             qa.setTextColor(Color.WHITE);
         }
         else if(qb.getText().toString().equals(getResposta)){
             qb.setBackgroundResource(R.drawable.botao_verde);
+            qb.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#55BD44")));
             qb.setTextColor(Color.WHITE);
         }
         else if(qc.getText().toString().equals(getResposta)){
             qc.setBackgroundResource(R.drawable.botao_verde);
+            qc.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#55BD44")));
             qc.setTextColor(Color.WHITE);
         }
         else if(qd.getText().toString().equals(getResposta)){
             qd.setBackgroundResource(R.drawable.botao_verde);
+            qd.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#55BD44")));
             qd.setTextColor(Color.WHITE);
         }
     }

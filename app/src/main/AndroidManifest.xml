@@ -11,10 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cerebrum">
         <activity
-            android:name=".TodasMaterias"
-            android:exported="false" />
-        <activity
-            android:name=".Resultados"
+            android:name=".Todas"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />

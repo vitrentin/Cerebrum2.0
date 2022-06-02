@@ -40,4 +40,5 @@
     <string name="respostasincorretas">0</string>
     <string name="frasecorretas">Respostas corretas:</string>
     <string name="fraseincorretas">Respostas incorretas:</string>
+    <string name="tempot">1:59</string>
 </resources>
