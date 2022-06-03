@@ -25,7 +25,7 @@
     <string name="gb">MG</string>
     <string name="gc">SP</string>
     <string name="gd">BA</string>
-    <string name="acertos">Parabéns você\n acertou 10/10</string>
+    <string name="parabens">Parabéns você acertou:</string>
     <string name="menu">Menu</string>
     <string name="sair2">Sair</string>
     <string name="jogar">Jogar</string>
@@ -41,4 +41,7 @@
     <string name="frasecorretas">Respostas corretas:</string>
     <string name="fraseincorretas">Respostas incorretas:</string>
     <string name="tempot">1:59</string>
+    <string name="acertos">2</string>
+    <string name="barra">/</string>
+    <string name="total">5</string>
 </resources>

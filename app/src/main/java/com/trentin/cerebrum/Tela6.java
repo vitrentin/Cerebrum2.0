@@ -19,13 +19,19 @@ public class Tela6 extends AppCompatActivity implements View.OnClickListener{
         exit.setOnClickListener(this);
 
         final TextView respostasCorretas = findViewById(R.id.respostascorretas);
+        final TextView respostasCorretas2 = findViewById(R.id.acertos);
         final TextView respostasIncorretas = findViewById(R.id.respostasincorretas);
+        final TextView repostasTotais = findViewById(R.id.total);
 
         final int getRespostasCorretas = getIntent().getIntExtra("correta",0);
         final int getRespostasIncorretas = getIntent().getIntExtra("incorreta",0);
+        final int getRespostasCorretas2 = getIntent().getIntExtra("correta",0);
+        final int getRespostasTotais = (getRespostasCorretas2 + getRespostasIncorretas);
 
         respostasCorretas.setText(String.valueOf(getRespostasCorretas));
+        respostasCorretas2.setText(String.valueOf(getRespostasCorretas2));
         respostasIncorretas.setText(String.valueOf(getRespostasIncorretas));
+        repostasTotais.setText(String.valueOf(getRespostasTotais));
     }
 
     @Override

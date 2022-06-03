@@ -19,8 +19,8 @@ import java.util.TimerTask;
 public class Tela2 extends AppCompatActivity implements View.OnClickListener{
     private Button pa, pb, pc, pd, proximoBtn;
     private TextView questao, questoes;
-    private Timer tempo;
-    private int tempoTotalMin = 1, segundos = 0;
+    //private Timer tempo;
+    //private int tempoTotalMin = 1, segundos = 0;
     private List<ListaDeQuestoes> listaDeQuestoes;
     private int indiceDeQuestaoAtual = 0;
     private String opcaoSelecionada = "";
@@ -45,11 +45,8 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
         //pd.setOnClickListener(this);
         proximoBtn = (Button) findViewById(R.id.proximo2);
         final TextView timer = findViewById(R.id.tempop);
-        //final TextView selecionarMaterias = findViewById(R.id.materias);
-        //final String getSelecionarMaterias = getIntent().getStringExtra("selecionarMateria");
-        //selecionarMateria.setText(getSelecionarMateria);
         listaDeQuestoes = BancoDeQuestoes.getQuestoes("portugues");
-        startTimer(timer);
+        //startTimer(timer);
 
         questoes.setText((indiceDeQuestaoAtual+1)+"/"+listaDeQuestoes.size());
         questao.setText(listaDeQuestoes.get(0).getQuestao());
@@ -132,8 +129,8 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tempo.purge();
-                tempo.cancel();
+                //tempo.purge();
+                //tempo.cancel();
 
                 startActivity(new Intent(Tela2.this, Tela1.class));
                 finish();
@@ -173,6 +170,7 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
             finish();
         }
     }
+    /*
     private void startTimer(TextView timer){
         tempo = new Timer();
         tempo.scheduleAtFixedRate(new TimerTask() {
@@ -180,7 +178,7 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
             public void run() {
                 if(segundos == 0){
                     tempoTotalMin--;
-                    segundos = 59;
+                    segundos = 5;
                 }
                 else if(segundos == 1 && tempoTotalMin == 0){
                     tempo.purge();
@@ -213,7 +211,7 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
                 });
             }
         }, 1000,1000);
-    }
+    }*/
     private int getRespostasCorretas(){
         int respostasCorretas = 0;
         for(int i=0;i<listaDeQuestoes.size();i++){
@@ -227,22 +225,22 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
         return respostasCorretas;
     }
     private int getRespostasIncorretas(){
-        int respostasCorretas = 0;
+        int respostasIncorretas = 0;
         for(int i=0;i<listaDeQuestoes.size();i++){
             final String getRespostaSelecionada = listaDeQuestoes.get(i).getRespostaSelecionada();
             final String getRespostas = listaDeQuestoes.get(i).getOpcerta();
 
             if(!getRespostaSelecionada.equals(getRespostas)){
-                respostasCorretas++;
+                respostasIncorretas++;
             }
         }
-        return respostasCorretas;
+        return respostasIncorretas;
     }
 
     @Override
     public void onBackPressed() {
-        tempo.purge();
-        tempo.cancel();
+        //tempo.purge();
+        //tempo.cancel();
 
         startActivity(new Intent(Tela2.this, Tela1.class));
         finish();
@@ -273,29 +271,5 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
     }
     @Override
     public void onClick(View view) {
-       /* if (view == pa) {
-            Intent i = new Intent(this, Tela2.class);
-            Bundle b = new Bundle();
-            i.putExtras(b);
-            startActivity(i);
-        }
-        if (view == pb) {
-            Intent i = new Intent(this, Tela2.class);
-            Bundle b = new Bundle();
-            i.putExtras(b);
-            startActivity(i);
-        }
-        if (view == pc) {
-            Intent i = new Intent(this, Tela2.class);
-            Bundle b = new Bundle();
-            i.putExtras(b);
-            startActivity(i);
-        }
-        if (view == pd) {
-            Intent i = new Intent(this, Tela2.class);
-            Bundle b = new Bundle();
-            i.putExtras(b);
-            startActivity(i);
-        }*/
     }
 }

@@ -24,7 +24,7 @@
             android:id="@+id/voltar5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="100dp"
+            android:layout_marginEnd="120dp"
             android:contentDescription="@string/imagem"
             app:srcCompat="@drawable/arrowback48px" />
 
@@ -41,7 +41,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tempo"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:visibility="invisible" />
     </LinearLayout>
 
     <LinearLayout

@@ -19,8 +19,8 @@ import java.util.TimerTask;
 public class Tela5 extends AppCompatActivity implements View.OnClickListener{
     private Button ga, gb, gc, gd,proximoBtn;
     private TextView questao, questoes;
-    private Timer tempo;
-    private int tempoTotalMin = 1, segundos = 0;
+    //private Timer tempo;
+    //private int tempoTotalMin = 1, segundos = 0;
     private List<ListaDeQuestoes> listaDeQuestoes;
     private int indiceDeQuestaoAtual = 0;
     private String opcaoSelecionada = "";
@@ -45,7 +45,7 @@ public class Tela5 extends AppCompatActivity implements View.OnClickListener{
         proximoBtn = (Button) findViewById(R.id.proximo5);
         listaDeQuestoes = BancoDeQuestoes.getQuestoes("geografia");
         final TextView timer = findViewById(R.id.tempog);
-        startTimer(timer);
+       // startTimer(timer);
 
         questoes.setText((indiceDeQuestaoAtual+1)+"/"+listaDeQuestoes.size());
         questao.setText(listaDeQuestoes.get(0).getQuestao());
@@ -128,8 +128,8 @@ public class Tela5 extends AppCompatActivity implements View.OnClickListener{
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tempo.purge();
-                tempo.cancel();
+                //tempo.purge();
+                //tempo.cancel();
 
                 startActivity(new Intent(Tela5.this, Tela1.class));
                 finish();
@@ -168,6 +168,7 @@ public class Tela5 extends AppCompatActivity implements View.OnClickListener{
             finish();
         }
     }
+    /*
     private void startTimer(TextView timer){
         tempo = new Timer();
         tempo.scheduleAtFixedRate(new TimerTask() {
@@ -175,15 +176,15 @@ public class Tela5 extends AppCompatActivity implements View.OnClickListener{
             public void run() {
                 if(segundos == 0){
                     tempoTotalMin--;
-                    segundos = 59;
+                    segundos = 5;
                 }
                 else if(segundos == 1 && tempoTotalMin == 0){
                     tempo.purge();
                     tempo.cancel();
                     Toast.makeText(Tela5.this, "Tempo esgotado", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Tela5.this, Tela6.class);
-                    intent.putExtra("coreta",getRespostasCorretas());
-                    intent.putExtra("incorreta", getRespostasIncorretas());
+                    Intent intent = new Intent(Tela5.this, Tela1.class);
+                    //intent.putExtra("coreta",getRespostasCorretas());
+                    //intent.putExtra("incorreta", getRespostasIncorretas());
                     startActivity(intent);
 
                     finish();
@@ -208,7 +209,7 @@ public class Tela5 extends AppCompatActivity implements View.OnClickListener{
                 });
             }
         }, 1000,1000);
-    }
+    }*/
     private int getRespostasCorretas(){
         int respostasCorretas = 0;
         for(int i=0;i<listaDeQuestoes.size();i++){
@@ -222,21 +223,21 @@ public class Tela5 extends AppCompatActivity implements View.OnClickListener{
         return respostasCorretas;
     }
     private int getRespostasIncorretas(){
-        int respostasCorretas = 0;
+        int respostasIncorretas = 0;
         for(int i=0;i<listaDeQuestoes.size();i++){
             final String getRespostaSelecionada = listaDeQuestoes.get(i).getRespostaSelecionada();
             final String getRespostas = listaDeQuestoes.get(i).getOpcerta();
 
             if(!getRespostaSelecionada.equals(getRespostas)){
-                respostasCorretas++;
+                respostasIncorretas++;
             }
         }
-        return respostasCorretas;
+        return respostasIncorretas;
     }
     @Override
     public void onBackPressed() {
-        tempo.purge();
-        tempo.cancel();
+        //tempo.purge();
+        //tempo.cancel();
 
         startActivity(new Intent(Tela5.this, Tela1.class));
         finish();

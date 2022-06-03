@@ -18,9 +18,9 @@ import java.util.TimerTask;
 
 public class Todas extends AppCompatActivity implements View.OnClickListener{
     private Button ta,tb,tc,td, proximoBtn;
-    private TextView questao, questoes;
-    private Timer tempo;
-    private int tempoTotalMin = 2, segundos = 0;
+    private TextView questao, questoes, selecionarMaterias;
+   // private Timer tempo;
+    //private int tempoTotalMin = 2, segundos = 0;
     private List<ListaDeQuestoes> listaDeQuestoes;
     private int indiceDeQuestaoAtual = 0;
     private String opcaoSelecionada = "";
@@ -42,15 +42,15 @@ public class Todas extends AppCompatActivity implements View.OnClickListener{
 
         td = (Button) findViewById(R.id.qtd);
 
-        TextView selecionarMaterias = findViewById(R.id.materia);
-        String getSelecionarMaterias = getIntent().getStringExtra("selecionarMateria");
+        selecionarMaterias = (TextView) findViewById(R.id.materia);
+        //String getSelecionarMaterias = getIntent().getStringExtra("selecionarMateria");
         //selecionarMateria.setText(getSelecionarMateria);
 
         proximoBtn = (Button) findViewById(R.id.proximo6);
         listaDeQuestoes = BancoDeQuestoes.getQuestoes("todas");
         final TextView timer = findViewById(R.id.tempotodas);
-        startTimer(timer);
-
+       // startTimer(timer);
+        selecionarMaterias.setText(listaDeQuestoes.get(0).getMateria());
         questoes.setText((indiceDeQuestaoAtual+1)+"/"+listaDeQuestoes.size());
         questao.setText(listaDeQuestoes.get(0).getQuestao());
         ta.setText(listaDeQuestoes.get(0).getOp1());
@@ -133,8 +133,8 @@ public class Todas extends AppCompatActivity implements View.OnClickListener{
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tempo.purge();
-                tempo.cancel();
+                //tempo.purge();
+                //tempo.cancel();
 
                 startActivity(new Intent(Todas.this, Tela1.class));
                 finish();
@@ -158,6 +158,7 @@ public class Todas extends AppCompatActivity implements View.OnClickListener{
             td.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#9A4DA7")));
 
             questoes.setText((indiceDeQuestaoAtual+1)+"/"+listaDeQuestoes.size());
+            selecionarMaterias.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getMateria());
             questao.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getQuestao());
             ta.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getOp1());
             tb.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getOp2());
@@ -173,6 +174,7 @@ public class Todas extends AppCompatActivity implements View.OnClickListener{
             finish();
         }
     }
+    /*
     private void startTimer(TextView timer){
         tempo = new Timer();
         tempo.scheduleAtFixedRate(new TimerTask() {
@@ -213,7 +215,7 @@ public class Todas extends AppCompatActivity implements View.OnClickListener{
                 });
             }
         }, 1000,1000);
-    }
+    }*/
     private int getRespostasCorretas(){
         int respostasCorretas = 0;
         for(int i=0;i<listaDeQuestoes.size();i++){
@@ -227,22 +229,21 @@ public class Todas extends AppCompatActivity implements View.OnClickListener{
         return respostasCorretas;
     }
     private int getRespostasIncorretas(){
-        int respostasCorretas = 0;
+        int respostasIncorretas = 0;
         for(int i=0;i<listaDeQuestoes.size();i++){
             final String getRespostaSelecionada = listaDeQuestoes.get(i).getRespostaSelecionada();
             final String getRespostas = listaDeQuestoes.get(i).getOpcerta();
 
             if(!getRespostaSelecionada.equals(getRespostas)){
-                respostasCorretas++;
+                respostasIncorretas++;
             }
         }
-        return respostasCorretas;
+        return respostasIncorretas;
     }
     @Override
     public void onBackPressed() {
-        tempo.purge();
-        tempo.cancel();
-
+        //tempo.purge();
+        //tempo.cancel();
         startActivity(new Intent(Todas.this, Tela1.class));
         finish();
     }

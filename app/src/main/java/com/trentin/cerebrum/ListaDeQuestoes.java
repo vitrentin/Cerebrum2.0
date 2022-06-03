@@ -1,9 +1,10 @@
 package com.trentin.cerebrum;
 
 public class ListaDeQuestoes {
-    private String questao, op1, op2, op3, op4, opcerta, respostaSelecionada;
+    private String questao, op1, op2, op3, op4, opcerta, respostaSelecionada, materia;
 
-    public ListaDeQuestoes(String questao, String op1, String op2, String op3, String op4, String opcerta,String respostaSelecionada) {
+    public ListaDeQuestoes(String materia,String questao, String op1, String op2, String op3, String op4, String opcerta,String respostaSelecionada) {
+        this.materia = materia;
         this.questao = questao;
         this.op1 = op1;
         this.op2 = op2;
@@ -12,7 +13,7 @@ public class ListaDeQuestoes {
         this.opcerta = opcerta;
         this.respostaSelecionada = respostaSelecionada;
     }
-
+    public String getMateria(){ return materia;}
     public String getQuestao() {
         return questao;
     }
