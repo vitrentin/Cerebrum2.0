@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:text="@string/tempo"
             android:textSize="24sp"
-            android:visibility="invisible" />
+            android:visibility="visible" />
 
     </LinearLayout>
 

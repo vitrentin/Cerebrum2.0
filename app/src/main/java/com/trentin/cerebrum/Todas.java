@@ -19,8 +19,8 @@ import java.util.TimerTask;
 public class Todas extends AppCompatActivity implements View.OnClickListener{
     private Button ta,tb,tc,td, proximoBtn;
     private TextView questao, questoes, selecionarMaterias;
-   // private Timer tempo;
-    //private int tempoTotalMin = 2, segundos = 0;
+    private Timer tempo;
+    private int tempoTotalMin = 2, segundos = 0;
     private List<ListaDeQuestoes> listaDeQuestoes;
     private int indiceDeQuestaoAtual = 0;
     private String opcaoSelecionada = "";
@@ -49,7 +49,7 @@ public class Todas extends AppCompatActivity implements View.OnClickListener{
         proximoBtn = (Button) findViewById(R.id.proximo6);
         listaDeQuestoes = BancoDeQuestoes.getQuestoes("todas");
         final TextView timer = findViewById(R.id.tempotodas);
-       // startTimer(timer);
+        startTimer(timer);
         selecionarMaterias.setText(listaDeQuestoes.get(0).getMateria());
         questoes.setText((indiceDeQuestaoAtual+1)+"/"+listaDeQuestoes.size());
         questao.setText(listaDeQuestoes.get(0).getQuestao());
@@ -133,8 +133,8 @@ public class Todas extends AppCompatActivity implements View.OnClickListener{
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //tempo.purge();
-                //tempo.cancel();
+                tempo.purge();
+                tempo.cancel();
 
                 startActivity(new Intent(Todas.this, Tela1.class));
                 finish();
@@ -174,48 +174,38 @@ public class Todas extends AppCompatActivity implements View.OnClickListener{
             finish();
         }
     }
-    /*
     private void startTimer(TextView timer){
         tempo = new Timer();
         tempo.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                if(segundos == 0){
-                    tempoTotalMin--;
-                    segundos = 59;
-                }
-                else if(segundos == 1 && tempoTotalMin == 0){
-                    tempo.purge();
-                    tempo.cancel();
-                    Toast.makeText(Todas.this, "Tempo esgotado", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Todas.this, Tela6.class);
-                    intent.putExtra("coreta",getRespostasCorretas());
-                    intent.putExtra("incorreta", getRespostasIncorretas());
-                    startActivity(intent);
-
-                    finish();
-                }
-                else{
-                    segundos--;
-                }
+                segundos++;
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         String minutosFinais = String.valueOf(tempoTotalMin);
                         String segundosFinais = String.valueOf(segundos);
 
-                        if(minutosFinais.length() == 1){
+                        if(segundos<10){
+                            segundosFinais = "0"+segundosFinais;
+                        }
+                        if(tempoTotalMin<10){
                             minutosFinais = "0"+minutosFinais;
                         }
-                        if(segundosFinais.length() == 1){
+                        if(segundos == 59){
+                            segundosFinais = "0";
+                            segundos = 0;
                             segundosFinais = "0"+segundosFinais;
+                            tempoTotalMin++;
+                            minutosFinais = String.valueOf(tempoTotalMin);
+                            minutosFinais = "0"+minutosFinais;
                         }
                         timer.setText(minutosFinais+":"+segundosFinais);
                     }
                 });
             }
         }, 1000,1000);
-    }*/
+    }
     private int getRespostasCorretas(){
         int respostasCorretas = 0;
         for(int i=0;i<listaDeQuestoes.size();i++){
@@ -242,8 +232,8 @@ public class Todas extends AppCompatActivity implements View.OnClickListener{
     }
     @Override
     public void onBackPressed() {
-        //tempo.purge();
-        //tempo.cancel();
+        tempo.purge();
+        tempo.cancel();
         startActivity(new Intent(Todas.this, Tela1.class));
         finish();
     }

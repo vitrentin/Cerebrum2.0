@@ -34,13 +34,13 @@
     <string name="escolha">Em qual matéria você deseja testar seus conhecimentos?</string>
     <string name="imagem">Logo</string>
     <string name="proximo">Próximo</string>
-    <string name="tempo">00:59</string>
+    <string name="tempo">00:00</string>
     <string name="questoes">1/5</string>
     <string name="respostascorretas">0</string>
     <string name="respostasincorretas">0</string>
     <string name="frasecorretas">Respostas corretas:</string>
     <string name="fraseincorretas">Respostas incorretas:</string>
-    <string name="tempot">1:59</string>
+    <string name="tempot">00:00</string>
     <string name="acertos">2</string>
     <string name="barra">/</string>
     <string name="total">5</string>
