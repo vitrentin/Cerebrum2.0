@@ -8,7 +8,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +22,7 @@ import java.util.TimerTask;
 
 public class Tela2 extends AppCompatActivity implements View.OnClickListener{
     private Button pa, pb, pc, pd, proximoBtn;
+    private ScrollView sview;
     private TextView questao, questoes;
     private Timer tempo;
     private int tempoTotalMin = 0, segundos = 0, contMateria=0;
@@ -46,6 +49,7 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
         //pc.setOnClickListener(this);
         pd = (Button) findViewById(R.id.pd);
         //pd.setOnClickListener(this);
+        sview = (ScrollView) findViewById(R.id.sviewp);
         proximoBtn = (Button) findViewById(R.id.proximo2);
         final TextView timer = findViewById(R.id.tempop);
         listaDeQuestoesTemp = BancoDeQuestoes.getQuestoes("portugues");
@@ -157,6 +161,9 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
 
     }
     private void mudarProximaQuestao(){
+        if(indiceDeQuestaoAtual==0){
+            sview.smoothScrollTo(0,0);
+        }
         indiceDeQuestaoAtual++;
         if((indiceDeQuestaoAtual+1) == listaDeQuestoes.size()){
             proximoBtn.setText("Enviar quiz");
@@ -185,6 +192,8 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
             String rc = questions.get(2);
             String rd = questions.get(3);
 
+            sview.smoothScrollTo(0,0);
+
             pa.setText(ra);
             pb.setText(rb);
             pc.setText(rc);
@@ -194,6 +203,7 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
             Intent intent = new Intent(Tela2.this, Tela6.class);
             intent.putExtra("correta",getRespostasCorretas());
             intent.putExtra("incorreta",getRespostasIncorretas());
+            intent.putExtra("contMateria", contMateria);
             startActivity(intent);
 
             finish();

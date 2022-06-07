@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ import java.util.TimerTask;
 
 public class Tela3 extends AppCompatActivity implements View.OnClickListener{
     private Button ma, mb, mc, md, proximoBtn;
+    private ScrollView sview;
     private TextView questao, questoes;
     private Timer tempo;
     private int tempoTotalMin = 0, segundos = 0;
@@ -45,6 +47,7 @@ public class Tela3 extends AppCompatActivity implements View.OnClickListener{
         //mc.setOnClickListener(this);
         md = (Button) findViewById(R.id.md);
         //md.setOnClickListener(this);
+        sview = (ScrollView) findViewById(R.id.sviewm);
         proximoBtn = (Button) findViewById(R.id.proximo3);
         listaDeQuestoesTemp = BancoDeQuestoes.getQuestoes("matematica");
         Collections.shuffle(listaDeQuestoesTemp);
@@ -155,6 +158,9 @@ public class Tela3 extends AppCompatActivity implements View.OnClickListener{
         });
     }
     private void mudarProximaQuestao(){
+        if(indiceDeQuestaoAtual==0){
+            sview.smoothScrollTo(0,0);
+        }
         indiceDeQuestaoAtual++;
         if((indiceDeQuestaoAtual+1) == listaDeQuestoes.size()){
             proximoBtn.setText("Enviar quiz");
@@ -183,6 +189,8 @@ public class Tela3 extends AppCompatActivity implements View.OnClickListener{
             String rc = questions.get(2);
             String rd = questions.get(3);
 
+            sview.smoothScrollTo(0,0);
+
             ma.setText(ra);
             mb.setText(rb);
             mc.setText(rc);
@@ -193,7 +201,6 @@ public class Tela3 extends AppCompatActivity implements View.OnClickListener{
             intent.putExtra("correta",getRespostasCorretas());
             intent.putExtra("incorreta",getRespostasIncorretas());
             startActivity(intent);
-
             finish();
         }
     }

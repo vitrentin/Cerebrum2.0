@@ -10,6 +10,7 @@ import android.widget.Button;
 
 public class Tela1 extends AppCompatActivity implements View.OnClickListener{
     private Button portugues, matematica, quimica, geografia, todos;
+    private int contMateiap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +25,8 @@ public class Tela1 extends AppCompatActivity implements View.OnClickListener{
         geografia.setOnClickListener(this);
         todos = (Button) findViewById(R.id.todas);
         todos.setOnClickListener(this);
+        contMateiap = getIntent().getIntExtra("contMateriap",0);
+        //portugues.setText(String.valueOf(contMateiap));
     }
 
     @Override

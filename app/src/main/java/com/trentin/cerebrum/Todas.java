@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,9 +21,10 @@ import java.util.TimerTask;
 
 public class Todas extends AppCompatActivity implements View.OnClickListener{
     private Button ta,tb,tc,td, proximoBtn;
+    private ScrollView sview;
     private TextView questao, questoes, selecionarMaterias;
     private Timer tempo;
-    private int tempoTotalMin = 2, segundos = 0;
+    private int tempoTotalMin = 0, segundos = 0;
     private List<ListaDeQuestoes> listaDeQuestoes = new ArrayList<>();
     private List<ListaDeQuestoes> listaDeQuestoesTemp;
     private int indiceDeQuestaoAtual = 0;
@@ -48,7 +50,7 @@ public class Todas extends AppCompatActivity implements View.OnClickListener{
         selecionarMaterias = (TextView) findViewById(R.id.materia);
         //String getSelecionarMaterias = getIntent().getStringExtra("selecionarMateria");
         //selecionarMateria.setText(getSelecionarMateria);
-
+        sview = (ScrollView) findViewById(R.id.sviewt);
         proximoBtn = (Button) findViewById(R.id.proximo6);
         listaDeQuestoesTemp = BancoDeQuestoes.getQuestoes("todas");
         Collections.shuffle(listaDeQuestoesTemp);
@@ -160,6 +162,9 @@ public class Todas extends AppCompatActivity implements View.OnClickListener{
         });
     }
     private void mudarProximaQuestao(){
+        if(indiceDeQuestaoAtual==0){
+            sview.smoothScrollTo(0,0);
+        }
         indiceDeQuestaoAtual++;
         if((indiceDeQuestaoAtual+1) == listaDeQuestoes.size()){
             proximoBtn.setText("Enviar quiz");
@@ -188,6 +193,8 @@ public class Todas extends AppCompatActivity implements View.OnClickListener{
             String rb = questions.get(1);
             String rc = questions.get(2);
             String rd = questions.get(3);
+
+            sview.smoothScrollTo(0,0);
 
             ta.setText(ra);
             tb.setText(rb);
