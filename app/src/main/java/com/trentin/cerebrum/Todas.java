@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -21,7 +23,8 @@ public class Todas extends AppCompatActivity implements View.OnClickListener{
     private TextView questao, questoes, selecionarMaterias;
     private Timer tempo;
     private int tempoTotalMin = 2, segundos = 0;
-    private List<ListaDeQuestoes> listaDeQuestoes;
+    private List<ListaDeQuestoes> listaDeQuestoes = new ArrayList<>();
+    private List<ListaDeQuestoes> listaDeQuestoesTemp;
     private int indiceDeQuestaoAtual = 0;
     private String opcaoSelecionada = "";
     @Override
@@ -47,16 +50,31 @@ public class Todas extends AppCompatActivity implements View.OnClickListener{
         //selecionarMateria.setText(getSelecionarMateria);
 
         proximoBtn = (Button) findViewById(R.id.proximo6);
-        listaDeQuestoes = BancoDeQuestoes.getQuestoes("todas");
+        listaDeQuestoesTemp = BancoDeQuestoes.getQuestoes("todas");
+        Collections.shuffle(listaDeQuestoesTemp);
+        for(int i=0;i<10;i++){
+            listaDeQuestoes.add(listaDeQuestoesTemp.get(i));
+        }
         final TextView timer = findViewById(R.id.tempotodas);
         startTimer(timer);
         selecionarMaterias.setText(listaDeQuestoes.get(0).getMateria());
         questoes.setText((indiceDeQuestaoAtual+1)+"/"+listaDeQuestoes.size());
         questao.setText(listaDeQuestoes.get(0).getQuestao());
-        ta.setText(listaDeQuestoes.get(0).getOp1());
-        tb.setText(listaDeQuestoes.get(0).getOp2());
-        tc.setText(listaDeQuestoes.get(0).getOp3());
-        td.setText(listaDeQuestoes.get(0).getOp4());
+        ArrayList<String> questions = new ArrayList<>();
+        questions.add(listaDeQuestoes.get(0).getOp1());
+        questions.add(listaDeQuestoes.get(0).getOp2());
+        questions.add(listaDeQuestoes.get(0).getOp3());
+        questions.add(listaDeQuestoes.get(0).getOp4());
+        Collections.shuffle(questions);
+        String ra = questions.get(0);
+        String rb = questions.get(1);
+        String rc = questions.get(2);
+        String rd = questions.get(3);
+
+        ta.setText(ra);
+        tb.setText(rb);
+        tc.setText(rc);
+        td.setText(rd);
 
         ta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,10 +178,21 @@ public class Todas extends AppCompatActivity implements View.OnClickListener{
             questoes.setText((indiceDeQuestaoAtual+1)+"/"+listaDeQuestoes.size());
             selecionarMaterias.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getMateria());
             questao.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getQuestao());
-            ta.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getOp1());
-            tb.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getOp2());
-            tc.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getOp3());
-            td.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getOp4());
+            ArrayList<String> questions = new ArrayList<>();
+            questions.add(listaDeQuestoes.get(indiceDeQuestaoAtual).getOp1());
+            questions.add(listaDeQuestoes.get(indiceDeQuestaoAtual).getOp2());
+            questions.add(listaDeQuestoes.get(indiceDeQuestaoAtual).getOp3());
+            questions.add(listaDeQuestoes.get(indiceDeQuestaoAtual).getOp4());
+            Collections.shuffle(questions);
+            String ra = questions.get(0);
+            String rb = questions.get(1);
+            String rc = questions.get(2);
+            String rd = questions.get(3);
+
+            ta.setText(ra);
+            tb.setText(rb);
+            tc.setText(rc);
+            td.setText(rd);
         }
         else{
             Intent intent = new Intent(Todas.this, Tela6.class);

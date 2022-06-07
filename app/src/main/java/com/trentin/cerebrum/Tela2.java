@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -21,7 +23,8 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
     private TextView questao, questoes;
     private Timer tempo;
     private int tempoTotalMin = 0, segundos = 0, contMateria=0;
-    private List<ListaDeQuestoes> listaDeQuestoes;
+    private List<ListaDeQuestoes> listaDeQuestoes = new ArrayList<>();
+    private List<ListaDeQuestoes> listaDeQuestoesTemp;
     private int indiceDeQuestaoAtual = 0;
     private String opcaoSelecionada = "";
     //private final List<ListaDeQuestoes> listaDeQuestoes = new ArrayList<>();
@@ -45,15 +48,30 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
         //pd.setOnClickListener(this);
         proximoBtn = (Button) findViewById(R.id.proximo2);
         final TextView timer = findViewById(R.id.tempop);
-        listaDeQuestoes = BancoDeQuestoes.getQuestoes("portugues");
+        listaDeQuestoesTemp = BancoDeQuestoes.getQuestoes("portugues");
+        Collections.shuffle(listaDeQuestoesTemp);
+        for(int i=0;i<5;i++){
+            listaDeQuestoes.add(listaDeQuestoesTemp.get(i));
+        }
         startTimer(timer);
 
         questoes.setText((indiceDeQuestaoAtual+1)+"/"+listaDeQuestoes.size());
         questao.setText(listaDeQuestoes.get(0).getQuestao());
-        pa.setText(listaDeQuestoes.get(0).getOp1());
-        pb.setText(listaDeQuestoes.get(0).getOp2());
-        pc.setText(listaDeQuestoes.get(0).getOp3());
-        pd.setText(listaDeQuestoes.get(0).getOp4());
+        ArrayList<String> questions = new ArrayList<>();
+        questions.add(listaDeQuestoes.get(0).getOp1());
+        questions.add(listaDeQuestoes.get(0).getOp2());
+        questions.add(listaDeQuestoes.get(0).getOp3());
+        questions.add(listaDeQuestoes.get(0).getOp4());
+        Collections.shuffle(questions);
+        String ra = questions.get(0);
+        String rb = questions.get(1);
+        String rc = questions.get(2);
+        String rd = questions.get(3);
+
+        pa.setText(ra);
+        pb.setText(rb);
+        pc.setText(rc);
+        pd.setText(rd);
 
         pa.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,10 +174,21 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
 
             questoes.setText((indiceDeQuestaoAtual+1)+"/"+listaDeQuestoes.size());
             questao.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getQuestao());
-            pa.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getOp1());
-            pb.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getOp2());
-            pc.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getOp3());
-            pd.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getOp4());
+            ArrayList<String> questions = new ArrayList<>();
+            questions.add(listaDeQuestoes.get(indiceDeQuestaoAtual).getOp1());
+            questions.add(listaDeQuestoes.get(indiceDeQuestaoAtual).getOp2());
+            questions.add(listaDeQuestoes.get(indiceDeQuestaoAtual).getOp3());
+            questions.add(listaDeQuestoes.get(indiceDeQuestaoAtual).getOp4());
+            Collections.shuffle(questions);
+            String ra = questions.get(0);
+            String rb = questions.get(1);
+            String rc = questions.get(2);
+            String rd = questions.get(3);
+
+            pa.setText(ra);
+            pb.setText(rb);
+            pc.setText(rc);
+            pd.setText(rd);
         }
         else{
             Intent intent = new Intent(Tela2.this, Tela6.class);
