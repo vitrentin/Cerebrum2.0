@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class Tela6 extends AppCompatActivity implements View.OnClickListener{
     private Button menu, exit;
-    private int contMateriap;
+    private float contMateriap, totalp,tp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +30,9 @@ public class Tela6 extends AppCompatActivity implements View.OnClickListener{
         final int getRespostasCorretas2 = getIntent().getIntExtra("correta",0);
         final int getRespostasTotais = (getRespostasCorretas2 + getRespostasIncorretas);
         contMateriap = getIntent().getIntExtra("contMateriap",0);
-
+        totalp = getIntent().getIntExtra("totalp",0);
+        tp = ((contMateriap/totalp)*100);
+       // contMateriap = (contMateriap/totalp)*100;
         respostasCorretas.setText(String.valueOf(getRespostasCorretas));
         respostasCorretas2.setText(String.valueOf(getRespostasCorretas2));
         respostasIncorretas.setText(String.valueOf(getRespostasIncorretas));
@@ -41,7 +43,7 @@ public class Tela6 extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View view) {
         if (view == menu) {
             Intent i = new Intent(this, Tela1.class);
-            i.putExtra("contMateriap", contMateriap);
+            i.putExtra("contMateriap", tp);
             Bundle b = new Bundle();
             i.putExtras(b);
             startActivity(i);

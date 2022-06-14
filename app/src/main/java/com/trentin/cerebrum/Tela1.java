@@ -10,23 +10,27 @@ import android.widget.Button;
 
 public class Tela1 extends AppCompatActivity implements View.OnClickListener{
     private Button portugues, matematica, quimica, geografia, todos;
-    private int contMateiap;
+    private float contMateiap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela1);
-        portugues = (Button) findViewById(R.id.portugues);
+        portugues = findViewById(R.id.portugues);
         portugues.setOnClickListener(this);
-        matematica = (Button) findViewById(R.id.matematica);
+        matematica = findViewById(R.id.matematica);
         matematica.setOnClickListener(this);
-        quimica = (Button) findViewById(R.id.quimica);
+        quimica = findViewById(R.id.quimica);
         quimica.setOnClickListener(this);
-        geografia = (Button) findViewById(R.id.geografia);
+        geografia = findViewById(R.id.geografia);
         geografia.setOnClickListener(this);
-        todos = (Button) findViewById(R.id.todas);
+        todos = findViewById(R.id.todas);
         todos.setOnClickListener(this);
         contMateiap = getIntent().getIntExtra("contMateriap",0);
         //portugues.setText(String.valueOf(contMateiap));
+        //getString(R.string.portugues,contMateiap);
+        String port = String.valueOf(contMateiap)+"%"+" "+"Português";
+        portugues.setText(port);
+
     }
 
     @Override

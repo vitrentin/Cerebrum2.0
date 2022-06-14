@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -26,12 +25,12 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
     private TextView questao, questoes;
     private Timer tempo;
     private int tempoTotalMin = 0, segundos = 0, contMateria=0;
-    private List<ListaDeQuestoes> listaDeQuestoes = new ArrayList<>();
+    private final List<ListaDeQuestoes> listaDeQuestoes = new ArrayList<>();
     private List<ListaDeQuestoes> listaDeQuestoesTemp;
     private int indiceDeQuestaoAtual = 0;
     private String opcaoSelecionada = "";
-    //private final List<ListaDeQuestoes> listaDeQuestoes = new ArrayList<>();
-    //private AppCompatButton op1, op2, op3,op4,opcerta, proximoBtn;
+    //private ImageView imagem;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,25 +40,29 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
         questao = findViewById(R.id.questaop);
 
         final ImageView voltar = findViewById(R.id.voltar2);
-        pa = (Button) findViewById(R.id.pa);
+        pa = findViewById(R.id.pa);
         //pa.setOnClickListener(this);
-        pb = (Button) findViewById(R.id.pb);
+        pb = findViewById(R.id.pb);
         //pb.setOnClickListener(this);
-        pc = (Button) findViewById(R.id.pc);
+        pc = findViewById(R.id.pc);
         //pc.setOnClickListener(this);
-        pd = (Button) findViewById(R.id.pd);
+        pd = findViewById(R.id.pd);
         //pd.setOnClickListener(this);
-        sview = (ScrollView) findViewById(R.id.sviewp);
-        proximoBtn = (Button) findViewById(R.id.proximo2);
+        sview = findViewById(R.id.sviewp);
+        proximoBtn = findViewById(R.id.proximo2);
         final TextView timer = findViewById(R.id.tempop);
         listaDeQuestoesTemp = BancoDeQuestoes.getQuestoes("portugues");
+
+      /*  if(listaDeQuestoes.get(0).getImagem() != 0){
+            imagem = findViewById(listaDeQuestoes.get(0).getImagem());
+        } */
         Collections.shuffle(listaDeQuestoesTemp);
         for(int i=0;i<5;i++){
             listaDeQuestoes.add(listaDeQuestoesTemp.get(i));
         }
         startTimer(timer);
-
-        questoes.setText((indiceDeQuestaoAtual+1)+"/"+listaDeQuestoes.size());
+        String indice = (indiceDeQuestaoAtual+1)+"/"+listaDeQuestoes.size();
+        questoes.setText(indice);
         questao.setText(listaDeQuestoes.get(0).getQuestao());
         ArrayList<String> questions = new ArrayList<>();
         questions.add(listaDeQuestoes.get(0).getOp1());
@@ -153,9 +156,10 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
             public void onClick(View view) {
                 tempo.purge();
                 tempo.cancel();
-
-                startActivity(new Intent(Tela2.this, Tela1.class));
-                finish();
+                Intent i = new Intent(Tela2.this, Tela1.class);
+                Bundle b = new Bundle();
+                i.putExtras(b);
+                startActivity(i);
             }
         });
 
@@ -178,8 +182,11 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
             pc.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#9A4DA7")));
             pd.setBackgroundResource(R.drawable.voltar2);
             pd.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#9A4DA7")));
-
-            questoes.setText((indiceDeQuestaoAtual+1)+"/"+listaDeQuestoes.size());
+            String indice = (indiceDeQuestaoAtual+1)+"/"+listaDeQuestoes.size();
+            questoes.setText(indice);
+           /* if(listaDeQuestoes.get(indiceDeQuestaoAtual).getImagem() != 0){
+                imagem = findViewById(listaDeQuestoes.get(indiceDeQuestaoAtual).getImagem());
+            } */
             questao.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getQuestao());
             ArrayList<String> questions = new ArrayList<>();
             questions.add(listaDeQuestoes.get(indiceDeQuestaoAtual).getOp1());
@@ -203,7 +210,8 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
             Intent intent = new Intent(Tela2.this, Tela6.class);
             intent.putExtra("correta",getRespostasCorretas());
             intent.putExtra("incorreta",getRespostasIncorretas());
-            intent.putExtra("contMateria", contMateria);
+            intent.putExtra("contMateriap", contMateria);
+            intent.putExtra("totalp",listaDeQuestoes.size());
             startActivity(intent);
 
             finish();
@@ -236,7 +244,8 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
                             minutosFinais = String.valueOf(tempoTotalMin);
                             minutosFinais = "0"+minutosFinais;
                         }
-                        timer.setText(minutosFinais+":"+segundosFinais);
+                        String tempo = minutosFinais+":"+segundosFinais;
+                        timer.setText(tempo);
                     }
                 });
             }
@@ -258,12 +267,6 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
 
         }
         return respostasCorretas;
-    }
-    public int getContMateria(){
-        return contMateria;
-    }
-    public List<ListaDeQuestoes> getListaDeQuestoes(){
-        return listaDeQuestoes;
     }
     private int getRespostasIncorretas(){
         int respostasIncorretas = 0;
