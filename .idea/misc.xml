@@ -17,10 +17,13 @@
         <entry key="..\:/Cerebrum/app/src/main/res/layout/activity_tela3.xml" value="0.33" />
         <entry key="..\:/Cerebrum/app/src/main/res/layout/activity_tela4.xml" value="0.25" />
         <entry key="..\:/Cerebrum/app/src/main/res/layout/activity_tela5.xml" value="0.22" />
-        <entry key="..\:/Cerebrum/app/src/main/res/layout/activity_tela6.xml" value="0.22" />
+        <entry key="..\:/Cerebrum/app/src/main/res/layout/activity_tela6.xml" value="0.33" />
         <entry key="..\:/Cerebrum/app/src/main/res/layout/activity_todas.xml" value="0.25" />
         <entry key="..\:/Cerebrum/app/src/main/res/layout/activity_todas_as_materias.xml" value="0.20416666666666666" />
         <entry key="..\:/Cerebrum/app/src/main/res/layout/activity_todas_materias.xml" value="0.20416666666666666" />
+        <entry key="..\:/Cerebrum/app/src/main/res/layout/fragment_blank_p.xml" value="0.22" />
+        <entry key="..\:/Cerebrum/app/src/main/res/layout/fragment_fullscreen_p.xml" value="0.20416666666666666" />
+        <entry key="..\:/Cerebrum/app/src/main/res/layout/fragment_scrolling_p.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>

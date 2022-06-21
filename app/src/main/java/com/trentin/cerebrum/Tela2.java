@@ -1,14 +1,20 @@
 package com.trentin.cerebrum;
 
+import android.content.Context;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,12 +30,16 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
     private ScrollView sview;
     private TextView questao, questoes;
     private Timer tempo;
-    private int tempoTotalMin = 0, segundos = 0, contMateria=0;
+    private int tempoTotalMin = 0, segundos = 0;
+    private float contMateria=0;
     private final List<ListaDeQuestoes> listaDeQuestoes = new ArrayList<>();
     private List<ListaDeQuestoes> listaDeQuestoesTemp;
     private int indiceDeQuestaoAtual = 0;
     private String opcaoSelecionada = "";
-    //private ImageView imagem;
+    //private SharedPreferences cont = getPreferences(Context.MODE_PRIVATE);
+    //private SharedPreferences total = getPreferences(Context.MODE_PRIVATE);
+    private ImageView imagemP;
+    private LinearLayout telaP;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +48,7 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
 
         questoes = findViewById(R.id.questoesp);
         questao = findViewById(R.id.questaop);
-
+        telaP = findViewById(R.id.telap);
         final ImageView voltar = findViewById(R.id.voltar2);
         pa = findViewById(R.id.pa);
         //pa.setOnClickListener(this);
@@ -50,6 +60,7 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
         //pd.setOnClickListener(this);
         sview = findViewById(R.id.sviewp);
         proximoBtn = findViewById(R.id.proximo2);
+        imagemP = findViewById(R.id.imageP);
         final TextView timer = findViewById(R.id.tempop);
         listaDeQuestoesTemp = BancoDeQuestoes.getQuestoes("portugues");
 
@@ -79,7 +90,22 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
         pb.setText(rb);
         pc.setText(rc);
         pd.setText(rd);
+        int img = listaDeQuestoes.get(0).getImagem();
+        Drawable drawableP = getResources().getDrawable(img);
+        imagemP.setImageDrawable(drawableP);
+        telaP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                replaceFragment(new BlankFragmentP());
+            }
 
+            private void replaceFragment(BlankFragmentP blankFragmentP) {
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.framelayout, blankFragmentP);
+                fragmentTransaction.commit();
+            }
+        });
         pa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -165,8 +191,10 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
 
     }
     private void mudarProximaQuestao(){
-        if(indiceDeQuestaoAtual==0){
-            sview.smoothScrollTo(0,0);
+        for(int i=0; i< listaDeQuestoes.size();i++){
+            if(indiceDeQuestaoAtual==i){
+                sview.smoothScrollTo(0,0);
+            }
         }
         indiceDeQuestaoAtual++;
         if((indiceDeQuestaoAtual+1) == listaDeQuestoes.size()){
@@ -187,6 +215,10 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
            /* if(listaDeQuestoes.get(indiceDeQuestaoAtual).getImagem() != 0){
                 imagem = findViewById(listaDeQuestoes.get(indiceDeQuestaoAtual).getImagem());
             } */
+
+            int img = listaDeQuestoes.get(indiceDeQuestaoAtual).getImagem();
+            Drawable drawableP = getResources().getDrawable(img);
+            imagemP.setImageDrawable(drawableP);
             questao.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getQuestao());
             ArrayList<String> questions = new ArrayList<>();
             questions.add(listaDeQuestoes.get(indiceDeQuestaoAtual).getOp1());
@@ -207,11 +239,13 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
             pd.setText(rd);
         }
         else{
+            float t = listaDeQuestoes.size();
+            //t = total.getInt("totalp", t);
             Intent intent = new Intent(Tela2.this, Tela6.class);
             intent.putExtra("correta",getRespostasCorretas());
             intent.putExtra("incorreta",getRespostasIncorretas());
             intent.putExtra("contMateriap", contMateria);
-            intent.putExtra("totalp",listaDeQuestoes.size());
+            intent.putExtra("totalp",t);
             startActivity(intent);
 
             finish();
@@ -261,7 +295,11 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
                 respostasCorretas++;
                 Boolean getCheca = listaDeQuestoes.get(i).getCheca();
                 if(!getCheca){
+                    //contMateria = cont.getInt("contMateriap", contMateria);
                     contMateria++;
+                   // SharedPreferences.Editor editor = cont.edit();
+                   // editor.putFloat("%f", contMateria);
+                   // editor.apply();
                 }
             }
 

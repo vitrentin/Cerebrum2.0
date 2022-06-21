@@ -1,7 +1,10 @@
 package com.trentin.cerebrum;
 
+import android.content.Context;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,7 +13,8 @@ import android.widget.Button;
 
 public class Tela1 extends AppCompatActivity implements View.OnClickListener{
     private Button portugues, matematica, quimica, geografia, todos;
-    private float contMateiap;
+    private float contMateriap;
+   // private SharedPreferences cont = getPreferences(Context.MODE_PRIVATE);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,10 +29,10 @@ public class Tela1 extends AppCompatActivity implements View.OnClickListener{
         geografia.setOnClickListener(this);
         todos = findViewById(R.id.todas);
         todos.setOnClickListener(this);
-        contMateiap = getIntent().getIntExtra("contMateriap",0);
-        //portugues.setText(String.valueOf(contMateiap));
-        //getString(R.string.portugues,contMateiap);
-        String port = String.valueOf(contMateiap)+"%"+" "+"Português";
+        contMateriap = getIntent().getIntExtra("contMateriap",0);
+        //portugues.setText(String.valueOf(contMateriap));
+        //getString(R.string.portugues,contMateriap);
+        String port = String.valueOf(contMateriap)+"%"+" "+"Português";
         portugues.setText(port);
 
     }

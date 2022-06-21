@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +30,7 @@ public class Tela3 extends AppCompatActivity implements View.OnClickListener{
     private List<ListaDeQuestoes> listaDeQuestoesTemp;
     private int indiceDeQuestaoAtual = 0;
     private String opcaoSelecionada = "";
+    private ImageView imagemM;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +51,7 @@ public class Tela3 extends AppCompatActivity implements View.OnClickListener{
         //md.setOnClickListener(this);
         sview = (ScrollView) findViewById(R.id.sviewm);
         proximoBtn = (Button) findViewById(R.id.proximo3);
+        imagemM = findViewById(R.id.imageM);
         listaDeQuestoesTemp = BancoDeQuestoes.getQuestoes("matematica");
         Collections.shuffle(listaDeQuestoesTemp);
         for(int i=0;i<5;i++){
@@ -74,7 +77,9 @@ public class Tela3 extends AppCompatActivity implements View.OnClickListener{
         mb.setText(rb);
         mc.setText(rc);
         md.setText(rd);
-
+        int img = listaDeQuestoes.get(0).getImagem();
+        Drawable drawableM = getResources().getDrawable(img);
+        imagemM.setImageDrawable(drawableM);
         ma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -158,8 +163,10 @@ public class Tela3 extends AppCompatActivity implements View.OnClickListener{
         });
     }
     private void mudarProximaQuestao(){
-        if(indiceDeQuestaoAtual==0){
-            sview.smoothScrollTo(0,0);
+        for(int i=0; i< listaDeQuestoes.size();i++){
+            if(indiceDeQuestaoAtual==i){
+                sview.smoothScrollTo(0,0);
+            }
         }
         indiceDeQuestaoAtual++;
         if((indiceDeQuestaoAtual+1) == listaDeQuestoes.size()){
@@ -177,6 +184,9 @@ public class Tela3 extends AppCompatActivity implements View.OnClickListener{
             md.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#9A4DA7")));
 
             questoes.setText((indiceDeQuestaoAtual+1)+"/"+listaDeQuestoes.size());
+            int img = listaDeQuestoes.get(indiceDeQuestaoAtual).getImagem();
+            Drawable drawableM = getResources().getDrawable(img);
+            imagemM.setImageDrawable(drawableM);
             questao.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getQuestao());
             ArrayList<String> questions = new ArrayList<>();
             questions.add(listaDeQuestoes.get(indiceDeQuestaoAtual).getOp1());

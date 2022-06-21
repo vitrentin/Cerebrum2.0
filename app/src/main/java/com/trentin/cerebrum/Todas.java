@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +30,7 @@ public class Todas extends AppCompatActivity implements View.OnClickListener{
     private List<ListaDeQuestoes> listaDeQuestoesTemp;
     private int indiceDeQuestaoAtual = 0;
     private String opcaoSelecionada = "";
+    private ImageView imagemT;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +54,7 @@ public class Todas extends AppCompatActivity implements View.OnClickListener{
         //selecionarMateria.setText(getSelecionarMateria);
         sview = (ScrollView) findViewById(R.id.sviewt);
         proximoBtn = (Button) findViewById(R.id.proximo6);
+        imagemT = findViewById(R.id.imageT);
         listaDeQuestoesTemp = BancoDeQuestoes.getQuestoes("todas");
         Collections.shuffle(listaDeQuestoesTemp);
         for(int i=0;i<10;i++){
@@ -77,7 +80,9 @@ public class Todas extends AppCompatActivity implements View.OnClickListener{
         tb.setText(rb);
         tc.setText(rc);
         td.setText(rd);
-
+        int img = listaDeQuestoes.get(0).getImagem();
+        Drawable drawableT = getResources().getDrawable(img);
+        imagemT.setImageDrawable(drawableT);
         ta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -162,8 +167,10 @@ public class Todas extends AppCompatActivity implements View.OnClickListener{
         });
     }
     private void mudarProximaQuestao(){
-        if(indiceDeQuestaoAtual==0){
-            sview.smoothScrollTo(0,0);
+        for(int i=0; i< listaDeQuestoes.size();i++){
+            if(indiceDeQuestaoAtual==i){
+                sview.smoothScrollTo(0,0);
+            }
         }
         indiceDeQuestaoAtual++;
         if((indiceDeQuestaoAtual+1) == listaDeQuestoes.size()){
@@ -181,6 +188,9 @@ public class Todas extends AppCompatActivity implements View.OnClickListener{
             td.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#9A4DA7")));
 
             questoes.setText((indiceDeQuestaoAtual+1)+"/"+listaDeQuestoes.size());
+            int img = listaDeQuestoes.get(indiceDeQuestaoAtual).getImagem();
+            Drawable drawableT = getResources().getDrawable(img);
+            imagemT.setImageDrawable(drawableT);
             selecionarMaterias.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getMateria());
             questao.setText(listaDeQuestoes.get(indiceDeQuestaoAtual).getQuestao());
             ArrayList<String> questions = new ArrayList<>();
