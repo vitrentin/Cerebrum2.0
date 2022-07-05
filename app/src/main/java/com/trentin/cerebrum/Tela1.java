@@ -1,6 +1,5 @@
 package com.trentin.cerebrum;
 
-import android.content.Context;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,7 +12,7 @@ import android.widget.Button;
 
 public class Tela1 extends AppCompatActivity implements View.OnClickListener{
     private Button portugues, matematica, quimica, geografia, todos;
-    private float contMateriap;
+    private float contMateriap,contP, total,res,res2;
    // private SharedPreferences cont = getPreferences(Context.MODE_PRIVATE);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,18 +28,26 @@ public class Tela1 extends AppCompatActivity implements View.OnClickListener{
         geografia.setOnClickListener(this);
         todos = findViewById(R.id.todas);
         todos.setOnClickListener(this);
-        contMateriap = getIntent().getIntExtra("contMateriap",0);
-        //portugues.setText(String.valueOf(contMateriap));
-        //getString(R.string.portugues,contMateriap);
-        String port = String.valueOf(contMateriap)+"%"+" "+"Português";
+        SharedPreferences shared = getSharedPreferences("sh",0);
+        contP = getIntent().getFloatExtra("contMateriap",0);
+        contMateriap += shared.getFloat("var",0);
+        total = shared.getFloat("var2",0);
+        res = (contMateriap/total)*100;
+        SharedPreferences.Editor editor = shared.edit();
+        res2 += contP;
+        editor.putFloat("var3",res2);
+        editor.commit();
+        res2 = shared.getFloat("var3",0);
+        String port = String.valueOf(res2)+"%"+" "+"Português";
         portugues.setText(port);
-
+        // 5 +5 10 +5 15 +5 20 +0 20 +10 30 +5 35
     }
 
     @Override
     public void onClick(View view) {
         if (view == portugues) {
             Intent i = new Intent(this, Tela2.class);
+            i.putExtra("contMateriap",contMateriap);
             Bundle b = new Bundle();
             i.putExtras(b);
             startActivity(i);

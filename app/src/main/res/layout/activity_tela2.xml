@@ -51,10 +51,11 @@
         android:layout_height="100dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:layout_weight="0.3"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:clickable="true">
+        android:layout_weight="0.4"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center|center_horizontal"
+        android:orientation="horizontal">
 
         <ScrollView
             android:id="@+id/sviewp"
@@ -70,7 +71,7 @@
                     android:id="@+id/imageP"
                     android:layout_width="wrap_content"
                     android:layout_height="100dp"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center_horizontal"
                     android:contentDescription="@string/imagem"
                     android:foregroundGravity="center"
                     app:srcCompat="@drawable/livro" />
@@ -95,12 +96,14 @@
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:layout_weight="0.2"
+        android:gravity="center"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <Button
@@ -119,6 +122,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <Button
@@ -137,6 +141,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <Button
@@ -155,6 +160,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <Button
@@ -172,7 +178,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:orientation="horizontal">
 

@@ -45,4 +45,7 @@ public class ListaDeQuestoes {
     public void setRespostaSelecionada(String respostaSelecionada) {
         this.respostaSelecionada = respostaSelecionada;
     }
+    public void setCheca(Boolean checa){
+        this.checa = checa;
+    }
 }

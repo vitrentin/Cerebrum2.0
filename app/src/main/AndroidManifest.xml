@@ -11,6 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cerebrum">
         <activity
+            android:name=".zoom"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity
             android:name=".Todas"
             android:exported="false"
             android:screenOrientation="portrait"

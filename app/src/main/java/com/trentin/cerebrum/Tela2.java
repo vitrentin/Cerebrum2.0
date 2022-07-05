@@ -3,6 +3,7 @@ package com.trentin.cerebrum;
 import android.content.Context;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -31,13 +32,11 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
     private TextView questao, questoes;
     private Timer tempo;
     private int tempoTotalMin = 0, segundos = 0;
-    private float contMateria=0;
+    private float contMateria, cont;
     private final List<ListaDeQuestoes> listaDeQuestoes = new ArrayList<>();
     private List<ListaDeQuestoes> listaDeQuestoesTemp;
     private int indiceDeQuestaoAtual = 0;
     private String opcaoSelecionada = "";
-    //private SharedPreferences cont = getPreferences(Context.MODE_PRIVATE);
-    //private SharedPreferences total = getPreferences(Context.MODE_PRIVATE);
     private ImageView imagemP;
     private LinearLayout telaP;
 
@@ -96,15 +95,32 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
         telaP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                replaceFragment(new BlankFragmentP());
+                Intent intent = new Intent(Tela2.this, zoom.class);
+                intent.putExtra("img",listaDeQuestoes.get(indiceDeQuestaoAtual).getImagem());
+                intent.putExtra("texto",listaDeQuestoes.get(indiceDeQuestaoAtual).getQuestao());
+                startActivity(intent);
             }
 
-            private void replaceFragment(BlankFragmentP blankFragmentP) {
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.framelayout, blankFragmentP);
-                fragmentTransaction.commit();
+        });
+        questao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Tela2.this, zoom.class);
+                intent.putExtra("img",listaDeQuestoes.get(indiceDeQuestaoAtual).getImagem());
+                intent.putExtra("texto",listaDeQuestoes.get(indiceDeQuestaoAtual).getQuestao());
+                startActivity(intent);
             }
+
+        });
+        imagemP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Tela2.this, zoom.class);
+                intent.putExtra("img",listaDeQuestoes.get(indiceDeQuestaoAtual).getImagem());
+                intent.putExtra("texto",listaDeQuestoes.get(indiceDeQuestaoAtual).getQuestao());
+                startActivity(intent);
+            }
+
         });
         pa.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -244,8 +260,8 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
             Intent intent = new Intent(Tela2.this, Tela6.class);
             intent.putExtra("correta",getRespostasCorretas());
             intent.putExtra("incorreta",getRespostasIncorretas());
-            intent.putExtra("contMateriap", contMateria);
-            intent.putExtra("totalp",t);
+            intent.putExtra("contMateriap", cont);
+            intent.putExtra("totalp",listaDeQuestoesTemp.size());
             startActivity(intent);
 
             finish();
@@ -287,23 +303,46 @@ public class Tela2 extends AppCompatActivity implements View.OnClickListener{
     }
     private int getRespostasCorretas(){
         int respostasCorretas = 0;
+        final float contP = getIntent().getFloatExtra("contMateriap",0);
+        cont = contP;
         for(int i=0;i<listaDeQuestoes.size();i++){
             final String getRespostaSelecionada = listaDeQuestoes.get(i).getRespostaSelecionada();
             final String getRespostas = listaDeQuestoes.get(i).getOpcerta();
 
-            if(getRespostaSelecionada.equals(getRespostas)){
-                respostasCorretas++;
-                Boolean getCheca = listaDeQuestoes.get(i).getCheca();
-                if(!getCheca){
-                    //contMateria = cont.getInt("contMateriap", contMateria);
+            if(getRespostaSelecionada.compareToIgnoreCase(getRespostas)==0){
+                Boolean getCheca = listaDeQuestoesTemp.get(i).getCheca();
+                SharedPreferences shared = getSharedPreferences("sh",0);
+                SharedPreferences.Editor editor = shared.edit();
+                editor.putFloat("var",contMateria);
+                if(getCheca == false){
+                    getCheca = true;
+                    listaDeQuestoesTemp.get(i).setCheca(getCheca);
                     contMateria++;
-                   // SharedPreferences.Editor editor = cont.edit();
-                   // editor.putFloat("%f", contMateria);
-                   // editor.apply();
+                    cont++;
+                    contMateria = shared.getFloat("var",0);
+
                 }
+                editor.commit();
+                respostasCorretas++;
+                editor.putFloat("var2",listaDeQuestoesTemp.size()); // 20
             }
 
         }
+        /*
+        if(getCheca == false){
+                getCheca = true;
+                listaDeQuestoes.get(i).setCheca(getCheca);
+                contMateria++;
+            }
+            if(getRespostaSelecionada.compareToIgnoreCase(getRespostas)==0){
+                respostasCorretas++;
+                SharedPreferences shared = getSharedPreferences("sh",0);
+                SharedPreferences.Editor editor = shared.edit();
+                editor.putFloat("var",contMateria);
+                editor.putFloat("var2",listaDeQuestoesTemp.size());
+                editor.commit();
+            }
+         */
         return respostasCorretas;
     }
     private int getRespostasIncorretas(){
