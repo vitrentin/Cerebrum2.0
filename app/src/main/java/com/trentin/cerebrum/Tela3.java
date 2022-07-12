@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +32,7 @@ public class Tela3 extends AppCompatActivity implements View.OnClickListener{
     private int indiceDeQuestaoAtual = 0;
     private String opcaoSelecionada = "";
     private ImageView imagemM;
+    private LinearLayout telaM;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +42,7 @@ public class Tela3 extends AppCompatActivity implements View.OnClickListener{
         questao = findViewById(R.id.questaom);
 
         final ImageView voltar = findViewById(R.id.voltar3);
-
+        telaM = findViewById(R.id.telam);
         ma = (Button) findViewById(R.id.ma);
         //ma.setOnClickListener(this);
         mb = (Button) findViewById(R.id.mb);
@@ -80,6 +82,36 @@ public class Tela3 extends AppCompatActivity implements View.OnClickListener{
         int img = listaDeQuestoes.get(0).getImagem();
         Drawable drawableM = getResources().getDrawable(img);
         imagemM.setImageDrawable(drawableM);
+        telaM.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Tela3.this, zoom.class);
+                intent.putExtra("img",listaDeQuestoes.get(indiceDeQuestaoAtual).getImagem());
+                intent.putExtra("texto",listaDeQuestoes.get(indiceDeQuestaoAtual).getQuestao());
+                startActivity(intent);
+            }
+
+        });
+        questao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Tela3.this, zoom.class);
+                intent.putExtra("img",listaDeQuestoes.get(indiceDeQuestaoAtual).getImagem());
+                intent.putExtra("texto",listaDeQuestoes.get(indiceDeQuestaoAtual).getQuestao());
+                startActivity(intent);
+            }
+
+        });
+        imagemM.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Tela3.this, zoom.class);
+                intent.putExtra("img",listaDeQuestoes.get(indiceDeQuestaoAtual).getImagem());
+                intent.putExtra("texto",listaDeQuestoes.get(indiceDeQuestaoAtual).getQuestao());
+                startActivity(intent);
+            }
+
+        });
         ma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

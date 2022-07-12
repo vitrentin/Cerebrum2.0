@@ -31,9 +31,6 @@ public class zoom extends AppCompatActivity {
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(zoom.this, Tela2.class);
-                intent.putExtra("img",img);
-                intent.putExtra("texto",texto);
                 finish();
             }
 

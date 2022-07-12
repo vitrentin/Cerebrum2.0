@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +32,7 @@ public class Todas extends AppCompatActivity implements View.OnClickListener{
     private int indiceDeQuestaoAtual = 0;
     private String opcaoSelecionada = "";
     private ImageView imagemT;
+    private LinearLayout telaT;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +50,7 @@ public class Todas extends AppCompatActivity implements View.OnClickListener{
         tc = (Button) findViewById(R.id.qtc);
 
         td = (Button) findViewById(R.id.qtd);
-
+        telaT = findViewById(R.id.telat);
         selecionarMaterias = (TextView) findViewById(R.id.materia);
         //String getSelecionarMaterias = getIntent().getStringExtra("selecionarMateria");
         //selecionarMateria.setText(getSelecionarMateria);
@@ -83,6 +85,36 @@ public class Todas extends AppCompatActivity implements View.OnClickListener{
         int img = listaDeQuestoes.get(0).getImagem();
         Drawable drawableT = getResources().getDrawable(img);
         imagemT.setImageDrawable(drawableT);
+        telaT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Todas.this, zoom.class);
+                intent.putExtra("img",listaDeQuestoes.get(indiceDeQuestaoAtual).getImagem());
+                intent.putExtra("texto",listaDeQuestoes.get(indiceDeQuestaoAtual).getQuestao());
+                startActivity(intent);
+            }
+
+        });
+        questao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Todas.this, zoom.class);
+                intent.putExtra("img",listaDeQuestoes.get(indiceDeQuestaoAtual).getImagem());
+                intent.putExtra("texto",listaDeQuestoes.get(indiceDeQuestaoAtual).getQuestao());
+                startActivity(intent);
+            }
+
+        });
+        imagemT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Todas.this, zoom.class);
+                intent.putExtra("img",listaDeQuestoes.get(indiceDeQuestaoAtual).getImagem());
+                intent.putExtra("texto",listaDeQuestoes.get(indiceDeQuestaoAtual).getQuestao());
+                startActivity(intent);
+            }
+
+        });
         ta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

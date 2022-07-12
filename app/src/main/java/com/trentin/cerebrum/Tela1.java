@@ -39,7 +39,7 @@ public class Tela1 extends AppCompatActivity implements View.OnClickListener{
         editor.commit();
         res2 = shared.getFloat("var3",0);
         String port = String.valueOf(res2)+"%"+" "+"Português";
-        portugues.setText(port);
+        //portugues.setText(port);
         // 5 +5 10 +5 15 +5 20 +0 20 +10 30 +5 35
     }
 

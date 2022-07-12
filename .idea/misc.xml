@@ -10,7 +10,7 @@
         <entry key="..\:/Cerebrum/app/src/main/res/drawable/ic_launcher_background.xml" value="0.153" />
         <entry key="..\:/Cerebrum/app/src/main/res/drawable/voltar2.xml" value="0.2315" />
         <entry key="..\:/Cerebrum/app/src/main/res/drawable/voltar_branco.xml" value="0.153" />
-        <entry key="..\:/Cerebrum/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Cerebrum/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Cerebrum/app/src/main/res/layout/activity_resultados.xml" value="0.33" />
         <entry key="..\:/Cerebrum/app/src/main/res/layout/activity_tela1.xml" value="0.33" />
         <entry key="..\:/Cerebrum/app/src/main/res/layout/activity_tela2.xml" value="0.33" />
@@ -22,6 +22,7 @@
         <entry key="..\:/Cerebrum/app/src/main/res/layout/activity_todas_as_materias.xml" value="0.20416666666666666" />
         <entry key="..\:/Cerebrum/app/src/main/res/layout/activity_todas_materias.xml" value="0.20416666666666666" />
         <entry key="..\:/Cerebrum/app/src/main/res/layout/activity_zoom.xml" value="0.19010416666666666" />
+        <entry key="..\:/Cerebrum/app/src/main/res/layout/activity_zoom2.xml" value="0.19010416666666666" />
         <entry key="..\:/Cerebrum/app/src/main/res/layout/fragment_blank_empty.xml" value="0.20416666666666666" />
         <entry key="..\:/Cerebrum/app/src/main/res/layout/fragment_blank_p.xml" value="0.33" />
         <entry key="..\:/Cerebrum/app/src/main/res/layout/fragment_fullscreen_p.xml" value="0.20416666666666666" />
